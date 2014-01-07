@@ -3,10 +3,8 @@ django-gentype
 
 Generic django model to be extended by a concrete model. A one-to-one between generic and concrete model. Generic object holds reference to concrete object. 
 
-(NOTE: Similar but a lot more decoupled design could be achieved by using django contrib Content Types app and adding content_type and content_object references to your model.)
 
-
-For example a generic model:
+For example a generic Shape model:
 
     from django.db import models
     from gentype.models import GenericType
@@ -33,14 +31,15 @@ Concrete models extending Shape:
 
 Create some shapes:
 
-    # this will create Shape and Circle db records (1-to-1)
+    # creating Circle rec will automatically create Shape rec (1-to-1)
+    # with the Shape rec holding reference to the concrete Circle rec 
     circle = Circle(radius=23)
     circle.save()
 
-    # Shape and Square db recs 
+    # create Square 
     square = Square(x=12)
     square.save()
 
     for shape in Shape.filter.all():
-        # we can get concrete recs from Shape
+        # we can reference concrete recs from Shape
         print shape.get_concrete_object().area()
