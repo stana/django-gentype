@@ -1,6 +1,8 @@
 django-gentype
 ==============
 
+(NOTE: This tries to achieve something similar to django-polymorphic. Probably better off using django-polymorphic.)
+
 Generic django model to be extended by a concrete model. A one-to-one between generic and concrete model. Generic object holds reference to concrete object. 
 
 
